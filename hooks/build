@@ -4,6 +4,14 @@
 #        -f $DOCKERFILE_PATH -t $IMAGE_NAME .
 echo docker buildx inspect --bootstrap
 docker buildx inspect --bootstrap
+
 echo docker buildx ls
 docker buildx ls
+
+echo docker run --rm --privileged multiarch/qemu-user-static:register
+docker run --rm --privileged multiarch/qemu-user-static:register
+
+echo docker buildx create --driver docker-container --use
+docker buildx create --driver docker-container --use
+
 echo End build hook
