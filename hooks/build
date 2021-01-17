@@ -26,6 +26,7 @@ do
     cat $f
 done
 
+docker run --rm alpine@sha256:d0710affa17fad5f466a70159cc458227bd25d4afb39514ef662ead3e6c99515 ls
 docker run --rm alpine@sha256:a220fbceafab4a9af7dd7b574eea7ce646dc5ab57d0b7fcd1f349dcca3d66929 ls
 
 echo docker buildx create --driver docker-container --use
