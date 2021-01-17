@@ -2,5 +2,8 @@
 # docker build \
 #        --platform=
 #        -f $DOCKERFILE_PATH -t $IMAGE_NAME .
+echo docker buildx inspect --bootstrap
 docker buildx inspect --bootstrap
+echo docker buildx ls
+docker buildx ls
 echo End build hook
