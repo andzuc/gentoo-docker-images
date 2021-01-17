@@ -17,6 +17,9 @@ docker buildx ls
 echo docker run --rm --privileged multiarch/qemu-user-static:register
 docker run --rm --privileged multiarch/qemu-user-static:register
 
+echo mount
+mount
+
 for f in /proc/sys/fs/binfmt_misc/*
 do
     echo cat $f
