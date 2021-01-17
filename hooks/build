@@ -2,6 +2,12 @@
 # docker build \
 #        --platform=
 #        -f $DOCKERFILE_PATH -t $IMAGE_NAME .
+echo uname -a
+uname -a
+
+echo docker info
+docker info
+
 echo docker buildx inspect --bootstrap
 docker buildx inspect --bootstrap
 
@@ -10,6 +16,12 @@ docker buildx ls
 
 echo docker run --rm --privileged multiarch/qemu-user-static:register
 docker run --rm --privileged multiarch/qemu-user-static:register
+
+for f in /proc/sys/fs/binfmt_misc/*
+do
+    echo cat $f
+    cat $f
+done
 
 echo docker buildx create --driver docker-container --use
 docker buildx create --driver docker-container --use
