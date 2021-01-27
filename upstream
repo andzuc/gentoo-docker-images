@@ -1,0 +1,11 @@
+* remote upstream
+  Fetch URL: https://github.com/gentoo/gentoo-docker-images.git
+  Push  URL: https://github.com/gentoo/gentoo-docker-images.git
+  HEAD branch: master
+  Remote branches:
+    add_systemd_target          tracked
+    fix/gentoo-portage-location tracked
+    hardened_g                  tracked
+    master                      tracked
+  Local ref configured for 'git push':
+    master pushes to master (fast-forwardable)
