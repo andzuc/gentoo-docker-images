@@ -2,7 +2,8 @@ name: build-stage3
 
 on:
   push:
-    branches: master
+    tags:
+      - '*'
 
 jobs:
   buildx:
@@ -10,6 +11,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
