@@ -24,30 +24,31 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup-buildx
     strategy:
-      target:
-        # - portage
-        - stage3-amd64
-        # - stage3-amd64-hardened
-        # - stage3-amd64-hardened-nomultilib
-        # - stage3-amd64-musl-hardened
-        # - stage3-amd64-musl-vanilla
-        # - stage3-amd64-nomultilib
-        # - stage3-amd64-systemd
-        # - stage3-amd64-uclibc-hardened
-        # - stage3-amd64-uclibc-vanilla
-        # - stage3-arm64
-        # - stage3-arm64-systemd
-        # - stage3-armv5tel
-        # - stage3-armv6j_hardfp
-        - stage3-armv7a_hardfp
-        # - stage3-ppc64le
-        # - stage3-s390x
-        - stage3-x86
-        # - stage3-x86-hardened
-        # - stage3-x86-musl-vanilla
-        # - stage3-x86-systemd
-        # - stage3-x86-uclibc-hardened
-        # - stage3-x86-uclibc-vanilla
+      matrix:
+        target:
+          # - portage
+          - stage3-amd64
+          # - stage3-amd64-hardened
+          # - stage3-amd64-hardened-nomultilib
+          # - stage3-amd64-musl-hardened
+          # - stage3-amd64-musl-vanilla
+          # - stage3-amd64-nomultilib
+          # - stage3-amd64-systemd
+          # - stage3-amd64-uclibc-hardened
+          # - stage3-amd64-uclibc-vanilla
+          # - stage3-arm64
+          # - stage3-arm64-systemd
+          # - stage3-armv5tel
+          # - stage3-armv6j_hardfp
+          - stage3-armv7a_hardfp
+          # - stage3-ppc64le
+          # - stage3-s390x
+          - stage3-x86
+          # - stage3-x86-hardened
+          # - stage3-x86-musl-vanilla
+          # - stage3-x86-systemd
+          # - stage3-x86-uclibc-hardened
+          # - stage3-x86-uclibc-vanilla
     steps:
       - name: build-stage3
         env:
