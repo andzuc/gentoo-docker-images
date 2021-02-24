@@ -9,8 +9,7 @@ fi
 IFS=- read -r NAME ARCH SUFFIX <<< "${TARGET}"
 
 # Push built images
-echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-docker push "${ORG}/${NAME}"
+docker push --all-tags "${ORG}/${NAME}"
 
 if [[ "${TARGET}" != stage* ]]; then
 	echo "Done! No manifests to push for TARGET=${TARGET}."
@@ -37,7 +36,10 @@ IFS=';' read -ra ARCHES <<< "${MANIFEST_ARCHES[${MANIFEST}]}"
 
 TAGS=()
 for ARCH in "${ARCHES[@]}"; do
-	TAGS+=("${ORG}/${NAME}:${ARCH}${SUFFIX:+-${SUFFIX}}")
+	TAG="${ORG}/${NAME}:${ARCH}${SUFFIX:+-${SUFFIX}}"
+	if docker manifest inspect "${TAG}" 1>/dev/null 2>&1; then
+		TAGS+=("${TAG}")
+	fi
 done
 
 docker manifest create "${ORG}/${MANIFEST}" "${TAGS[@]}"
@@ -48,7 +50,10 @@ MANIFEST="${NAME}:${SUFFIX:+${SUFFIX}-}${VERSION}"
 
 TAGS=()
 for ARCH in "${ARCHES[@]}"; do
-	TAGS+=("${ORG}/${NAME}:${ARCH}${SUFFIX:+-${SUFFIX}}-${VERSION}")
+	TAG="${ORG}/${NAME}:${ARCH}${SUFFIX:+-${SUFFIX}}-${VERSION}"
+	if docker manifest inspect "${TAG}" 1>/dev/null 2>&1; then
+		TAGS+=("${TAG}")
+	fi
 done
 
 docker manifest create "${ORG}/${MANIFEST}" "${TAGS[@]}"
