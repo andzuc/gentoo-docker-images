@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'stage3-*'
+  workflow-dispatch
 
 env:
   ORG: andzuc
