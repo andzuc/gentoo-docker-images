@@ -60,6 +60,7 @@ jobs:
         run: |
           echo "Building TARGET: ${ORG}/${TARGET}"
           pwd
+          ls
           ./build.sh
       - name: Inspect image
         run: docker image inspect "${ORG}/${TARGET/-/:}"
