@@ -40,7 +40,7 @@ jobs:
     name: ${{ matrix.target }}
     runs-on: ubuntu-latest
     env:
-      TARGET: ${{matrix.target}}
+      TARGET: ${{ matrix.target }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -59,3 +59,6 @@ jobs:
           ./build.sh
       - name: Inspect image
         run: docker image inspect "${ORG}/${TARGET/-/:}"
+      - name: Inspect portage
+        if: matrix.target != 'portage'
+        run: docker run --rm "${ORG}/${TARGET/-/:}" emerge --info
