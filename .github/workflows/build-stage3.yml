@@ -59,6 +59,7 @@ jobs:
           TARGET: ${{matrix.target}}
         run: |
           echo "Building TARGET: ${ORG}/${TARGET}"
+          pwd
           ./build.sh
       - name: Inspect image
         run: docker image inspect "${ORG}/${TARGET/-/:}"
