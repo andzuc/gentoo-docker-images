@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  ORG: andzuc/gentoo
+  ORG: andzuc
     
 jobs:
   build:
