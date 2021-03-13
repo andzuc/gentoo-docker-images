@@ -62,3 +62,10 @@ jobs:
       - name: Inspect portage
         if: matrix.target != 'portage'
         run: docker run --rm "${ORG}/${TARGET/-/:}" emerge --info
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+      - name: Push image
+        run: ./deploy.sh
